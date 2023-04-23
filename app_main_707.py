@@ -28,7 +28,7 @@ with tab1:
     x1 = st.slider('Age', 0, 100, 30)
 
     #'Sex'
-    x2 = st.radio('Select Sex', sex_encoder.classes_)
+    x2 = st.radio('Select Sex', Sex_encoder.classes_)
     x2 = Sex_encoder.transform([x2])[0]
 
     #'ChestPainType'
