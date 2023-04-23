@@ -1,3 +1,4 @@
+
 import streamlit as st 
 import numpy as np
 import pandas as pd
@@ -8,7 +9,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 model = pickle.load(open('model.heart.sav','rb'))
 
-Sex_encoder = pickle.load(open('encoder.sex.sav','rb'))
+Sex_encoder = pickle.load(open('encoder.Sex.sav','rb'))
 ChestPainType_encoder = pickle.load(open('encoder.ChestPainType.sav','rb'))
 RestingECG_encoder = pickle.load(open('encoder.RestingECG.sav','rb'))
 ExerciseAngina_encoder = pickle.load(open('encoder.ExerciseAngina.sav','rb'))
@@ -27,7 +28,7 @@ with tab1:
     x1 = st.slider('Age', 0, 100, 30)
 
     #'Sex'
-    x2 = st.radio('Select Sex', Sex_encoder.classes_)
+    x2 = st.radio('Select Sex', sex_encoder.classes_)
     x2 = Sex_encoder.transform([x2])[0]
 
     #'ChestPainType'
@@ -44,21 +45,21 @@ with tab1:
     x6 = st.slider('FastingBS', 0, 1, 0)
 
     #'RestingECG'
-    x7 = st.radio('RestingECG',RestingECG_encoder.classes_)
+    x7 = st.slider('RestingECG', 0, 1, 0)
     x7 = RestingECG_encoder.transform([x7])[0]
 
     #'MaxHR'
-    x8 = st.slider('MaxHR', 50, 210, 100)
+    x8 = st.slider('MaxHR', 0, 1, 0)
     
     #'ExerciseAngina'
-    x9 = st.radio('ExerciseAngina',ExerciseAngina_encoder.classes_)
+    x9 = st.slider('ExerciseAngina',0,1,0)
     x9 = ExerciseAngina_encoder.transform([x9])[0]
 
     #'Oldpeak'
-    x10 = st.slider('Oldpeak',-2.6,7.0,0.1)
+    x10 = st.slider('Oldpeak',0,1,0)
 
     #'ST_Slope'
-    x11 = st.radio('ST_Slope',ST_Slope_encoder.classes_)
+    x11 = st.slider('ST_Slope',0,1,0)
     x11 = ST_Slope_encoder.transform([x11])[0]
 
     x_new = pd.DataFrame(data=np.array([x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11]).reshape(1,-1), 
