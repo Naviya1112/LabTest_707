@@ -1,4 +1,5 @@
 
+
 import streamlit as st 
 import numpy as np
 import pandas as pd
@@ -45,21 +46,21 @@ with tab1:
     x6 = st.slider('FastingBS', 0, 1, 0)
 
     #'RestingECG'
-    x7 = st.slider('RestingECG', 0, 1, 0)
+    x7 = st.radio('RestingECG',RestingECG_encoder.classes_)
     x7 = RestingECG_encoder.transform([x7])[0]
 
     #'MaxHR'
-    x8 = st.slider('MaxHR', 0, 1, 0)
+    x8 = st.slider('MaxHR', 50, 210, 100)
     
     #'ExerciseAngina'
-    x9 = st.slider('ExerciseAngina',0,1,0)
+    x9 = st.radio('ExerciseAngina',ExerciseAngina_encoder.classes_)
     x9 = ExerciseAngina_encoder.transform([x9])[0]
 
     #'Oldpeak'
-    x10 = st.slider('Oldpeak',0,1,0)
+    x10 = st.slider('Oldpeak',-2.6,7.0,0.1)
 
     #'ST_Slope'
-    x11 = st.slider('ST_Slope',0,1,0)
+    x11 = st.radio('ST_Slope',ST_Slope_encoder.classes_)
     x11 = ST_Slope_encoder.transform([x11])[0]
 
     x_new = pd.DataFrame(data=np.array([x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11]).reshape(1,-1), 
